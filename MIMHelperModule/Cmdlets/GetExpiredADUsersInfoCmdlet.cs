@@ -1,4 +1,5 @@
 ﻿using MIMHelper;
+using MIMHelper.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,7 +37,7 @@ namespace MIMHelper.Cmdlets
         {
             WriteDebug("Processing record.");
 
-            using (var ps = ModuleHandler.GetPowerShellWithADModule())
+            using (var ps = ModuleHandler.GetPowerShellWithModules())
             {
                 var allUsers = GetAllUsers(ps);
 

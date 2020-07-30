@@ -8,6 +8,10 @@ namespace MIMHelper.Utilities
     public class ModuleHandler
     {
         private static readonly string _getADModuleCmd = "Get-Module -ListAvailable -Name ActiveDirectory";
+        private static readonly string _getLithnetMiisAutomationModuleCmd = "Get-Module -ListAvailable -Name LithnetMiisAutomation";
+        private static readonly string _importADModuleCmd = "Import-Module -Name ActiveDirectory";
+        private static readonly string _importLithnetMiisAutomationModuleCmd = "Import-Module -Name LithnetMiisAutomation";
+
         public static void CheckADModuleOrThrow()
         {
             using (var ps = PowerShell.Create())
@@ -21,9 +25,23 @@ namespace MIMHelper.Utilities
             }
         }
 
-        public static PowerShell GetPowerShellWithADModule()
+        public static void CheckLithnetMiisAutomationModuleOrThrow()
         {
-            return PowerShell.Create().AddScript("Import-Module -Name ActiveDirectory");
+            using (var ps = PowerShell.Create())
+            {
+                var hasADModule = ps.AddScript(_getLithnetMiisAutomationModuleCmd).Invoke();
+
+                if (hasADModule.Count == 0)
+                {
+                    throw new CommandNotFoundException($"Module LithnetMiisAutomation cannot be found with command: {_getLithnetMiisAutomationModuleCmd}.");
+                }
+            }
         }
+
+        public static PowerShell GetPowerShellWithModules()
+        {
+            return PowerShell.Create().AddScript(_importADModuleCmd).AddScript(_importLithnetMiisAutomationModuleCmd);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MIMHelper.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace MIMHelper.Cmdlets
 
         protected override void ProcessRecord()
         {
-            using (var ps = ModuleHandler.GetPowerShellWithADModule())
+            using (var ps = ModuleHandler.GetPowerShellWithModules())
             {
                 var allOrganizationUnits = GetAllOrganizationUnits(ps);
                 ps.Commands.Clear();
