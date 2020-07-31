@@ -8,9 +8,9 @@ using System.Management.Automation;
 
 namespace MIMHelper.Cmdlets
 {
-    [Cmdlet(VerbsCommon.Get, "ExpiredADUsersInfo")]
+    [Cmdlet(VerbsCommon.Get, "ExpiredADUsers")]
     [OutputType(typeof(Microsoft.ActiveDirectory.Management.ADUser))]
-    public class GetExpiredADUsersInfoCmdlet : Cmdlet
+    public class GetExpiredADUsersCmdlet : Cmdlet
     {
         [Parameter(Position = 0)]
         public int DaysAfterPwdExpired { get; set; } = 0;

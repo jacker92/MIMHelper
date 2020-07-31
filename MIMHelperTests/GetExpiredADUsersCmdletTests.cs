@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace MIMHelperTests
 {
-    public class GetExpiredADUsersInfoCmdletTests
+    public class GetExpiredADUsersCmdletTests
     {
         [Fact]
         public void ShouldThrowCommandNotFoundException()
         {
-            var sut = new GetExpiredADUsersInfoCmdlet();
+            var sut = new GetExpiredADUsersCmdlet();
             Assert.Throws<CommandNotFoundException>(() => sut.Invoke().Cast<object>().ToList());
         }
     }
