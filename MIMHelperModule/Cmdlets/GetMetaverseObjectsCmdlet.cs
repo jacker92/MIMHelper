@@ -1,4 +1,5 @@
 ﻿using Lithnet.Miiserver.Client;
+using MIMHelper.Models;
 using MIMHelper.Utilities;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ using System.Text;
 
 namespace MIMHelper.Cmdlets
 {
-    [Cmdlet(VerbsCommon.Get, "MIMConfiguration")]
-    [OutputType(typeof(MIMConfiguration))]
-    public class GetMIMConfigurationCmdlet : Cmdlet
+    [Cmdlet(VerbsCommon.Get, "MetaverseObjects")]
+    [OutputType(typeof(MetaverseObjectContainerModel))]
+    public class GetMetaverseObjectsCmdlet : Cmdlet
     {
         protected override void BeginProcessing()
         {
@@ -37,7 +38,7 @@ namespace MIMHelper.Cmdlets
 
                 allObjects.Values.ToList().ForEach(x => totalCount += x.Count());
 
-                WriteObject(new MIMConfiguration
+                WriteObject(new MetaverseObjectContainerModel
                 {
                     TotalMVObjects = totalCount,
                     TotalMAs = objectTypes.Keys.Count(),
@@ -90,14 +91,5 @@ namespace MIMHelper.Cmdlets
         {
             base.StopProcessing();
         }
-    }
-
-    public class MIMConfiguration
-    {
-        public long TotalMVObjects { get; set; } = 0;
-
-        public long TotalMAs { get; set; } = 0;
-
-        public Dictionary<string, Collection<PSObject>> Objects { get; set; }
     }
 }
