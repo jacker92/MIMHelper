@@ -17,8 +17,9 @@ This module uses following modules:
 ```sh
 git clone https://github.com/jacker92/MIMHelper.git
 ```
-2. Build project
+2. Install dependencies & Build project
 ```sh
+dotnet restore
 dotnet build
 ```
 3. Import dll to PowerShell
