@@ -18,9 +18,6 @@ namespace MIMHelper.Cmdlets
         [Parameter(Position = 1)]
         public string BaseOU { get; set; }
 
-        [Parameter(Position = 2)]
-        public string OrganizationName { get; set; }
-
         protected override void BeginProcessing()
         {
             WriteDebug("Begin processing.");
